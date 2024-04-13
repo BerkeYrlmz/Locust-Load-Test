@@ -15,7 +15,7 @@ class WebsiteUser(HttpUser):
             "password": "123",
             "phone": "543437831",
             "userStatus": 1
-            }
+        }
         self.client.post("/v2/user", json=payload)
 
     @task
@@ -27,12 +27,26 @@ class WebsiteUser(HttpUser):
         payload = {
             "username": "TestBerke123",
             "password": "123"
-            }
+        }
         self.client.get("/v2/user/login", params=payload)
 
     @task
     def get_user_logout(self):
         self.client.get("/v2/user/logout")
+
+    @task
+    def put_user_update(self):
+        payload = {
+            "id": 7856865488,
+            "username": "TestBerke123",
+            "firstName": "BerkePut",
+            "lastName": "YorulmazPut",
+            "email": "testberkeput@test.com",
+            "password": "123",
+            "phone": "542745341",
+            "userStatus": 1
+        }
+        self.client.put("/v2/user/TestBerke123", json=payload)
 
     # @task
     # def delete_user(self):
@@ -51,15 +65,16 @@ class WebsiteUser(HttpUser):
 
     @task
     def post_create_with_array(self):
-        payload = {
-            "id": 745638023,
-            "username": "jdksdbgdj",
-            "firstName": "sgdsdgdsasg",
-            "lastName": "dsgsgdfh",
-            "email": "djghdsjgal@fdhgjd.com",
-            "password": "123",
-            "phone": "7452359230",
-            "userStatus": 0
+        payload = [
+            {
+                "id": 4378647843,
+                "username": "jhgdfkgj",
+                "firstName": "hgjdghjkdgda",
+                "lastName": "jyfsfhasj",
+                "email": "khudsufsdıf@usdf.com",
+                "password": "123",
+                "phone": "783532285",
+                "userStatus": 0
             }
+        ]
         self.client.post("/v2/user/createWithArray", json=payload)
-
